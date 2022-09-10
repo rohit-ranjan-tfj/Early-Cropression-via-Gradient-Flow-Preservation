@@ -208,11 +208,11 @@ class Metrics:
                 print("doing confusion matrix")
                 self._write_confusion_matrix(epoch, trainer_ns)
 
-            if trainer_ns._arguments.disable_saliency:
-                print("doing saliencies")
-                self._write_saliency(epoch, trainer_ns)
-                if not trainer_ns._arguments.l0:
-                    self._write_snip(epoch, trainer_ns)
+#             if trainer_ns._arguments.disable_saliency:
+#                 print("doing saliencies")
+#                 self._write_saliency(epoch, trainer_ns)
+#                 if not trainer_ns._arguments.l0:
+#                     self._write_snip(epoch, trainer_ns)
 
             self._writer.flush()
         except Exception as e:
