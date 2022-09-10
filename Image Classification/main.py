@@ -142,16 +142,25 @@ def assert_compatibilities(arguments):
                              "Choose one mode, not multiple")
 
 
+import pickle
+
 def load_checkpoint(arguments, metrics, model):
     if (not (arguments.checkpoint_name is None)) and (not (arguments.checkpoint_model is None)):
-        path = os.path.join(RESULTS_DIR, arguments.checkpoint_name, MODELS_DIR, arguments.checkpoint_model)
-        state = DATA_MANAGER.load_python_obj(path)
+        # path = os.path.join(RESULTS_DIR, arguments.checkpoint_name, MODELS_DIR, arguments.checkpoint_model)
+        # state = DATA_MANAGER.load_python_obj(path)
+        with open(arguments.checkpoint_name, 'rb') as file:
+          try:
+              while True:
+                  state = pickle.load(file)
+          except EOFError:
+              pass
         try:
             model.load_state_dict(state)
         except KeyError as e:
             print(list(state.keys()))
             raise e
         out(f"Loaded checkpoint {arguments.checkpoint_name} from {arguments.checkpoint_model}")
+
 
 
 def log_start_run():
