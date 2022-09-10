@@ -6,7 +6,7 @@ from utils.data_manager import DataManager
 
 
 
-PROJ_NAME = "EarlyCroP"
+PROJ_NAME = "Early-Cropression-via-Gradient-Flow-Preservation"
 WORKING_DIR_PATH = "."
 
 # output
